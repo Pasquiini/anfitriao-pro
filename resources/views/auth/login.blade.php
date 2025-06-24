@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - Login</title>
+    <title>{{ config('app.name', 'Anfitrião Pro') }} - Login</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,14 +18,12 @@
 
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-base-200">
-        <div class="w-full max-w-4xl mt-6 mb-6 mx-auto">
+        <div class="w-full max-w-4xl mt-6 mb-6 mx-auto p-4 sm:p-0">
             <div class="card lg:card-side bg-base-100 shadow-2xl">
 
                 {{-- LADO ESQUERDO: MENSAGEM DE BOAS-VINDAS --}}
-                <div
-                    class="card-body bg-primary text-primary-content rounded-t-2xl lg:rounded-l-2xl lg:rounded-r-none flex flex-col justify-center items-center p-12">
+                <div class="card-body bg-primary text-primary-content rounded-t-2xl lg:rounded-l-2xl lg:rounded-r-none flex flex-col justify-center items-center p-12">
                     <a href="/" class="mb-8">
-                        {{-- Você pode colocar sua logo aqui --}}
                         <h1 class="text-4xl font-bold">Anfitrião Pro</h1>
                     </a>
                     <div class="text-center">
@@ -49,8 +47,7 @@
                             <label class="label" for="email">
                                 <span class="label-text">Email</span>
                             </label>
-                            <input id="email" type="email" name="email" :value="old('email')" required
-                                autofocus autocomplete="username" class="input input-bordered w-full" />
+                            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" class="input input-bordered w-full" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
@@ -59,16 +56,14 @@
                             <label class="label" for="password">
                                 <span class="label-text">Senha</span>
                             </label>
-                            <input id="password" type="password" name="password" required
-                                autocomplete="current-password" class="input input-bordered w-full" />
+                            <input id="password" type="password" name="password" required autocomplete="current-password" class="input input-bordered w-full" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
 
                         <!-- Lembrar-me e Esqueceu a senha -->
                         <div class="flex items-center justify-between mt-4 text-sm">
                             <label for="remember_me" class="flex items-center gap-2 cursor-pointer">
-                                <input id="remember_me" type="checkbox" class="checkbox checkbox-primary"
-                                    name="remember">
+                                <input id="remember_me" type="checkbox" class="checkbox checkbox-primary" name="remember">
                                 <span>Lembrar-me</span>
                             </label>
 
@@ -90,5 +85,4 @@
         </div>
     </div>
 </body>
-
 </html>

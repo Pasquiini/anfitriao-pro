@@ -52,7 +52,7 @@
                         @else
                             <a href="{{ route('login') }}" class="btn btn-ghost mr-2">Fazer Login</a>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="btn btn-primary">Contratar</a>
+                                 <a href="https://wa.me/5517996499888?text=Ol%C3%A1%2C%20queria%20saber%20mais%20sobre%20o%20sistema%20Anfitri%C3%A3o%20Pro" target="_blank" class="btn btn-primary">Contratar</a>
                             @endif
                         @endauth
                     @endif
@@ -68,7 +68,7 @@
                     <div class="max-w-3xl">
                         <h1 class="text-5xl md:text-7xl font-bold">Diga adeus ao overbooking.</h1>
                         <p class="py-6 text-lg">Anfitrião Pro é o sistema simples e poderoso que você precisa para gerenciar suas reservas, evitar agendamentos duplicados e profissionalizar a gestão dos seus imóveis de temporada.</p>
-                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Começar Agora por R$ 29/mês</a>
+                        <a href="https://wa.me/5517996499888?text=Ol%C3%A1%2C%20queria%20saber%20mais%20sobre%20o%20sistema%20Anfitri%C3%A3o%20Pro" target="_blank" class="btn btn-primary btn-lg">Começar Agora por R$ 29/mês</a>
                         <a href="{{ route('login') }}" class="btn btn-ghost btn-lg">Já tenho conta</a>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                                     <li class="flex items-center gap-2"><svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Suporte via WhatsApp</li>
                                 </ul>
                                 <div class="card-actions justify-end">
-                                    <a href="{{ route('register') }}" class="btn btn-primary w-full">Quero contratar agora!</a>
+                                     <a href="https://wa.me/5517996499888?text=Ol%C3%A1%2C%20queria%20saber%20mais%20sobre%20o%20sistema%20Anfitri%C3%A3o%20Pro" target="_blank" class="btn btn-primary">Quero contratar agora!</a>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +146,6 @@
         <footer class="footer footer-center p-10 bg-base-200 text-base-content">
             <aside>
                 <p>Copyright © {{ date('Y') }} - Todos os direitos reservados por Anfitrião Pro</p>
-                <p>Desenvolvido para simplificar a vida dos anfitriões de Lagoa Santa - GO</p>
             </aside>
         </footer>
 
