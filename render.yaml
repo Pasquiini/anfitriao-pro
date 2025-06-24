@@ -14,7 +14,7 @@ services:
   # Serviço Web (sua aplicação Laravel)
   - type: web
     name: anfitriao-pro # O nome da sua aplicação
-    env: php # Especifica o ambiente, o que já pré-configura muita coisa
+    runtime: php # CORREÇÃO: A chave correta é 'runtime', não 'env'
     plan: free # Usa o plano gratuito da Render
     region: ohio # Garante que a aplicação rode na mesma região do banco
 
@@ -41,7 +41,6 @@ services:
       - key: APP_KEY
         generateValue: true
 
-      # CORREÇÃO: A variável APP_URL é removida daqui.
       # A Render injeta a variável RENDER_EXTERNAL_URL automaticamente,
       # que o Laravel usará se APP_URL não estiver definida explicitamente.
 
