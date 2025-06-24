@@ -14,9 +14,9 @@ services:
   # Serviço Web (sua aplicação Laravel)
   - type: web
     name: anfitriao-pro
-    # CORREÇÃO: A linha 'runtime: php' foi removida.
-    # A Render irá detectar automaticamente que é um projeto PHP
-    # por causa do arquivo composer.json na raiz.
+    # CORREÇÃO: A chave correta para um projeto Laravel é 'env: laravel'.
+    # Isso instrui a Render a usar seu ambiente otimizado para Laravel.
+    env: laravel
     plan: free
     region: ohio
 
