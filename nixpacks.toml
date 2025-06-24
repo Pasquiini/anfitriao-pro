@@ -1,0 +1,6 @@
+# Arquivo de configuração para o build da Railway (Nixpacks)
+
+[phases.setup]
+# Lista de pacotes do sistema (via 'apt') para instalar antes do build.
+# Adicionamos o 'netcat-openbsd', que fornece o comando 'nc'.
+aptPkgs = ["netcat-openbsd"]
