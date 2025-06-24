@@ -2,12 +2,12 @@
 # Este arquivo deve ser criado na raiz do seu projeto.
 
 # 1. Definição do Banco de Dados
-# Movemos o banco de dados para sua própria seção dedicada.
 databases:
   - name: anfitriao-pro-db # Nome para o seu banco de dados
     databaseName: anfitriao_pro_db # O nome real do banco que será criado
     user: anfitriao_pro_user # O nome do usuário para acessar o banco
     plan: free # Usa o plano gratuito
+    region: ohio # Adiciona uma região para o banco de dados
 
 # 2. Definição dos Serviços
 services:
@@ -16,6 +16,7 @@ services:
     name: anfitriao-pro # O nome da sua aplicação
     env: php # Especifica o ambiente, o que já pré-configura muita coisa
     plan: free # Usa o plano gratuito da Render
+    region: ohio # Garante que a aplicação rode na mesma região do banco
 
     # Comandos para construir o projeto a cada novo deploy
     buildCommand: |
@@ -25,34 +26,28 @@ services:
       php artisan migrate --force # Roda as migrations automaticamente
 
     # Comando para iniciar o servidor web
-    # O --host 0.0.0.0 é crucial para ser acessível externamente
     startCommand: php artisan serve --host 0.0.0.0 --port $PORT
 
-    # Definição das Variáveis de Ambiente para o Serviço Web
-    # Isso substitui o nosso arquivo .env local.
+    # Definição das Variáveis de Ambiente
     envVars:
       - key: APP_NAME
         value: "Anfitrião Pro"
       - key: APP_ENV
-        value: production # MUITO IMPORTANTE para segurança e performance
+        value: production
       - key: APP_DEBUG
-        value: false # MUITO IMPORTANTE para segurança
+        value: false
 
       # Render irá gerar uma chave segura automaticamente
       - key: APP_KEY
         generateValue: true
 
-      # Render irá fornecer a URL da aplicação automaticamente
-      - key: APP_URL
-        fromService:
-          type: web
-          name: anfitriao-pro
-          property: url
+      # CORREÇÃO: A variável APP_URL é removida daqui.
+      # A Render injeta a variável RENDER_EXTERNAL_URL automaticamente,
+      # que o Laravel usará se APP_URL não estiver definida explicitamente.
 
       # Conexão com o banco de dados.
-      # Render irá pegar os valores do serviço de banco de dados que criamos acima.
       - key: DB_CONNECTION
-        value: pgsql # Usamos pgsql para PostgreSQL
+        value: pgsql
       - key: DB_HOST
         fromDatabase:
           name: anfitriao-pro-db
