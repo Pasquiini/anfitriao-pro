@@ -1,0 +1,71 @@
+# Arquivo de configuração "Blueprint" para o deploy na Render.com
+# Este arquivo deve ser criado na raiz do seu projeto.
+
+services:
+  # 1. O Serviço Web (sua aplicação Laravel)
+  - type: web
+    name: anfitriao-pro # O nome da sua aplicação
+    env: php # Especifica o ambiente, o que já pré-configura muita coisa
+    plan: free # Usa o plano gratuito da Render
+
+    # Comandos para construir o projeto a cada novo deploy
+    buildCommand: |
+      composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+      npm install
+      npm run build
+      php artisan migrate --force # Roda as migrations automaticamente
+
+    # Comando para iniciar o servidor web
+    # O --host 0.0.0.0 é crucial para ser acessível externamente
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+
+  # 2. O Banco de Dados
+  - type: psql # psql = PostgreSQL
+    name: anfitriao-pro-db # Nome para o seu banco de dados
+    plan: free # Usa o plano gratuito
+
+# 3. Definição das Variáveis de Ambiente para o Serviço Web
+#    Isso substitui o nosso arquivo .env local.
+envVars:
+  - key: APP_NAME
+    value: "Anfitrião Pro"
+  - key: APP_ENV
+    value: production # MUITO IMPORTANTE para segurança e performance
+  - key: APP_DEBUG
+    value: false # MUITO IMPORTANTE para segurança
+
+  # Render irá gerar uma chave segura automaticamente
+  - key: APP_KEY
+    generateValue: true
+
+  # Render irá fornecer a URL da aplicação automaticamente
+  - key: APP_URL
+    fromService:
+      type: web
+      name: anfitriao-pro
+      property: url
+
+  # Conexão com o banco de dados.
+  # Render irá pegar os valores do serviço de banco de dados que criamos acima.
+  - key: DB_CONNECTION
+    value: pgsql # Usamos pgsql para PostgreSQL
+  - key: DB_HOST
+    fromDatabase:
+      name: anfitriao-pro-db
+      property: host
+  - key: DB_PORT
+    fromDatabase:
+      name: anfitriao-pro-db
+      property: port
+  - key: DB_DATABASE
+    fromDatabase:
+      name: anfitriao-pro-db
+      property: database
+  - key: DB_USERNAME
+    fromDatabase:
+      name: anfitriao-pro-db
+      property: user
+  - key: DB_PASSWORD
+    fromDatabase:
+      name: anfitriao-pro-db
+      property: password
